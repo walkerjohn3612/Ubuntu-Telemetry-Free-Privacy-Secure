@@ -44,20 +44,7 @@ sudo apt-get -y purge zeitgeist-extension-fts
 # ========
 
 
-# DNS encryption:
-sudo apt-get -y install dnscrypt-proxy #tool, which helps to protect dns leak
-# should to be manually configured and added to ufw. Just read all the section "Trouble Shooting" here and google "How To Install DNSCrypt on Ubuntu"].
 
-# Trouble Shooting:
-# 	if internet will not work, try to restart dnscrypt-proxy: 
-# 		sudo /etc/init.d/dnscrypt-proxy restart
-# 	Also, may be tool will use some another port, detect the port in this output: 
-# 		sudo ss -ntulp 
-# 	Then add the port to ufw:
-# 		sudo ufw allow out [portnumber]
-# 		sudo ufw reload
-
-# ========
 
 
 # FireWall:
